@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { Card, CardContent, Typography, Button, Grid, FormControl, InputLabel, Select, MenuItem, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { Payment } from "@mui/icons-material";
 
 export default function ViewOrders() {
@@ -24,9 +23,8 @@ export default function ViewOrders() {
     }
   }
 
-  const navigate = useNavigate();
-
   useEffect(() => {
+    // Fetch the initial orders data when the component mounts
     axios
       .get(`${import.meta.env.VITE_BASE_URL}/wholesale/vieworders`)
       .then((res) => {
@@ -45,31 +43,35 @@ export default function ViewOrders() {
   );
 
   const handleCollect = (orderId) => {
-    const status = {
-      message: "collected",
-      id: orderId,
-    };
+    const status = { message: "collected", id: orderId };
     axios
       .post(`${import.meta.env.VITE_BASE_URL}/wholesale/updatestatus`, status)
       .then((res) => {
         alert(res.data);
-        // Reload the page after status update
-        // window.location.reload();
+
+        // Optimistically update the status of the order in the state
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId ? { ...order, status: "collected" } : order
+          )
+        );
       })
       .catch((err) => console.log(err));
   };
 
   const handleCancel = (orderId) => {
-    const status = {
-      message: "cancelled",
-      id: orderId,
-    };
+    const status = { message: "cancelled", id: orderId };
     axios
       .post(`${import.meta.env.VITE_BASE_URL}/wholesale/updatestatus`, status)
       .then((res) => {
         alert(res.data);
-        // Reload the page after status update
-        window.location.reload();
+
+        // Optimistically update the status of the order in the state
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId ? { ...order, status: "cancelled" } : order
+          )
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -98,18 +100,26 @@ export default function ViewOrders() {
   };
 
   const updateOrderAfterPayment = (orderId, updatedData) => {
-    // Make an API call to update the order's quantity, total price, and status
     axios
       .post(`${import.meta.env.VITE_BASE_URL}/wholesale/updatepayment`, {
         id: orderId,
         ...updatedData,
       })
       .then((response) => {
-        console.log(response.data); // Log response if needed
+        console.log(response.data);
         setPaymentSuccess(true);
+        
+        // Update the order in the state after payment
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId
+              ? { ...order, status: "paid", quality: selectedOrder.quality, totalprice: totalAmount[selectedOrder._id] }
+              : order
+          )
+        );
+
         setTimeout(() => {
           setOpenPaymentModal(false);
-          window.location.reload();
         }, 3000);
       })
       .catch((error) => {
@@ -245,8 +255,6 @@ export default function ViewOrders() {
           </Typography>
         )}
       </Dialog>
-
-      {/* <Button onClick={() => navigate("/wholesale")}>BACK TO DASHBOARD</Button> */}
     </Grid>
   );
 }
