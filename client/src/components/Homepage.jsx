@@ -6,15 +6,16 @@ import about from '../assets/spices.avif'; // Imported image
 import axios from 'axios';
 
 export default function Homepage() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+ 
   const [products, setProducts] = useState([]);
   const [tips, setTips] = useState([]);
   const [open, setOpen] = useState(false); // State to manage the modal visibility
   const [selectedTip, setSelectedTip] = useState(null); // State to store the selected tip
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    setDrawerOpen(!drawerOpen);
   };
 
   // Fetch tips data from the backend
@@ -90,6 +91,21 @@ export default function Homepage() {
           </Box>
         </Toolbar>
       </AppBar>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={handleDrawerToggle}
+      >
+        <Box sx={{ width: 250 }} role="presentation">
+          {['Home', 'About', 'Testimonials', 'Products', 'Register', 'Login'].map((text, index) => (
+            <Button key={index} component={Link} to={`/${text.toLowerCase()}`} sx={{ color: 'black', width: '100%' }}>
+              {text}
+            </Button>
+          ))}
+        </Box>
+      </Drawer>
 
       {/* Hero Section with Responsive Background Image */}
       <Box

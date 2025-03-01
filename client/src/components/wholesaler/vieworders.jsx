@@ -54,7 +54,7 @@ export default function ViewOrders() {
       .then((res) => {
         alert(res.data);
         // Reload the page after status update
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => console.log(err));
   };
