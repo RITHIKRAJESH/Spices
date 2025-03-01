@@ -161,7 +161,7 @@ const handleCategoryEditChange = (index, e) => {
       <Typography variant="h4" sx={{ fontWeight: "bold", textAlign: "center", mb: 3 }}>
         Product List
       </Typography>
-      <Button onClick={()=>navigate('/wholesale')}>BACK TO DASH BOARD </Button>
+      {/* <Button onClick={()=>navigate('/wholesale')}>BACK TO DASH BOARD </Button> */}
       <Grid container spacing={3}>
         {viewProducts.map((prod) => (
           <Grid item xs={12} sm={6} md={4} key={prod._id}>

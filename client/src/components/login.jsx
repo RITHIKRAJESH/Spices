@@ -58,7 +58,7 @@ const LoginForm = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #00B09B, #96C93D)',// Gradient background
+        background: 'linear-gradient(135deg, #F5F5F5, #E0E0E0)',// Gradient background
       }}
     >
       <Container maxWidth="sm">
