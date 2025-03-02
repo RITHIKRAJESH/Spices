@@ -190,7 +190,7 @@ export default function ViewOrders() {
                       variant="contained"
                       color="success"
                       size="small"
-                      sx={{ mr: 1 }}
+                      sx={{ mr: 1, mt:2 }}
                       onClick={() => handleCollect(order._id)}
                     >
                       Collect
