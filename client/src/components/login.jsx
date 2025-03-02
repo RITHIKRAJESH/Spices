@@ -58,15 +58,19 @@ const LoginForm = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #F5F5F5, #E0E0E0)',// Gradient background
+        background: 'linear-gradient(135deg, #ff7e5f, #feb47b)', // Warm gradient background
+        padding: 2,
       }}
     >
       <Container maxWidth="sm">
-        <Box sx={{ mt: 5, p: 3, boxShadow: 3, borderRadius: 2, background: 'white' }}>
-          <Typography variant="h5" gutterBottom>
-            User Login
+        <Box sx={{
+          mt: 5, p: 4, boxShadow: 5, borderRadius: 3, background: 'white', border: '1px solid #ddd',
+          transition: 'all 0.3s ease-in-out', ':hover': { boxShadow: 10, transform: 'scale(1.02)' }
+        }}>
+          <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', color: '#333' }}>
+            Login to Your Account
           </Typography>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             <TextField
               fullWidth
               label="Email"
@@ -75,8 +79,10 @@ const LoginForm = () => {
               value={formData.email}
               onChange={handleChange}
               margin="normal"
+              variant="outlined"
               error={!!errors.email}
               helperText={errors.email}
+              sx={{ borderRadius: 2, boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }}
             />
             <TextField
               fullWidth
@@ -86,10 +92,20 @@ const LoginForm = () => {
               value={formData.password}
               onChange={handleChange}
               margin="normal"
+              variant="outlined"
               error={!!errors.password}
               helperText={errors.password}
+              sx={{ borderRadius: 2, boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }}
             />
-            <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{
+                mt: 2, width: '100%', padding: '12px', fontSize: '16px', background: '#ff7e5f', '&:hover': { background: '#feb47b' },
+                borderRadius: 3, boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', transition: 'all 0.3s ease-in-out'
+              }}
+            >
               Login
             </Button>
           </form>

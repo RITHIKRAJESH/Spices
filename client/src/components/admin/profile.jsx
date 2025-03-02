@@ -51,7 +51,7 @@ export default function AdminProfile() {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 5 }}>
-      <Button onClick={()=>navigate('/admin')}>BACK TO DASH BOARD</Button>
+      {/* <Button onClick={()=>navigate('/admin')}>BACK TO DASH BOARD</Button> */}
       <Card sx={{ textAlign: "center", p: 3, boxShadow: 3, borderRadius: 3 }}>
         {user && (
           <>

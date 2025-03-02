@@ -289,7 +289,7 @@ export default function Homepage() {
       {/* Marquee Section for Products */}
       <Box sx={{ mt: 5, overflow: 'hidden', position: 'relative' }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'black', textAlign: 'center' }}>
-          Our Product Spices
+          Our Spices 
         </Typography>
 
         <Box

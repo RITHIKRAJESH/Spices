@@ -10,6 +10,9 @@ export default function Profile() {
   const [accountNo, setAccountNo] = useState("");
   const [ifsc, setIfsc] = useState("");
   const [error, setError] = useState("");
+  const [mobileError, setMobileError] = useState("");
+  const [accountNoError, setAccountNoError] = useState("");
+  const [ifscError, setIfscError] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -49,10 +52,33 @@ export default function Profile() {
   }, []);
 
   const handleUpdate = () => {
-    if (!mobile || !accountNo || !ifsc) {
-      setError("All fields are required.");
-      return;
+    let isValid = true;
+    setMobileError("");
+    setAccountNoError("");
+    setIfscError("");
+
+    // Validate mobile number
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobile || !mobileRegex.test(mobile)) {
+      setMobileError("Please enter a valid 10-digit mobile number.");
+      isValid = false;
     }
+
+    // Validate account number
+    const accountNoRegex = /^[0-9]{10,18}$/;
+    if (!accountNo || !accountNoRegex.test(accountNo)) {
+      setAccountNoError("Please enter a valid account number (10-18 digits).");
+      isValid = false;
+    }
+
+    // Validate IFSC code
+    const ifscRegex = /^[A-Za-z]{4}0[A-Za-z0-9]{6}$/;
+    if (!ifsc || !ifscRegex.test(ifsc)) {
+      setIfscError("Please enter a valid IFSC code (4 letters, 0, and 6 digits).");
+      isValid = false;
+    }
+
+    if (!isValid) return;
 
     const token = localStorage.getItem("token");
     const decoded = jwtDecode(token);
@@ -67,7 +93,7 @@ export default function Profile() {
     };
 
     axios
-      .put(`${url}/user/update`, updatedDetails,{headers:{_id:userId}})
+      .put(`${url}/user/update`, updatedDetails, { headers: { _id: userId } })
       .then((res) => {
         alert("User details updated successfully!");
         setUser((prevUser) => ({ ...prevUser, ...updatedDetails }));
@@ -106,6 +132,7 @@ export default function Profile() {
               <Typography variant="body1" sx={{ mt: 1 }}>
                 <strong>Role:</strong> {user.role}
               </Typography>
+
               {/* Editable Fields */}
               <TextField
                 label="Mobile"
@@ -113,6 +140,8 @@ export default function Profile() {
                 onChange={(e) => setMobile(e.target.value)}
                 fullWidth
                 sx={{ mt: 2 }}
+                error={!!mobileError}
+                helperText={mobileError}
               />
               <TextField
                 label="Account No"
@@ -120,6 +149,8 @@ export default function Profile() {
                 onChange={(e) => setAccountNo(e.target.value)}
                 fullWidth
                 sx={{ mt: 2 }}
+                error={!!accountNoError}
+                helperText={accountNoError}
               />
               <TextField
                 label="IFSC"
@@ -127,12 +158,16 @@ export default function Profile() {
                 onChange={(e) => setIfsc(e.target.value)}
                 fullWidth
                 sx={{ mt: 2 }}
+                error={!!ifscError}
+                helperText={ifscError}
               />
+
               {error && (
                 <Typography variant="body2" color="error" sx={{ mt: 2 }}>
                   {error}
                 </Typography>
               )}
+
               <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={handleUpdate}>
                 Update Details
               </Button>

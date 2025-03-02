@@ -44,7 +44,7 @@ export default function AdminViewUsers() {
       <Typography variant="h4" sx={{ mb: 3 }}>
         NetWork Users!
       </Typography>
-      <Button onClick={() => navigate("/admin")}>BACK TO DASH BOARD</Button>
+      {/* <Button onClick={() => navigate("/admin")}>BACK TO DASH BOARD</Button> */}
       {loading ? (
         <CircularProgress />
       ) : (

@@ -41,7 +41,7 @@ export default function Fertilizers() {
 
   return (
     <Container>
-      <Typography variant="h4" sx={{ mb: 3 }}>View Products</Typography>
+      <Typography variant="h4" sx={{ mb: 3,textAlign:'center'}}>FERTILIZERS!</Typography>
       
       {/* Grid to display product cards */}
       <Grid container spacing={3}>
