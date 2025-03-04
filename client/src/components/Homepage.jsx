@@ -80,17 +80,29 @@ export default function Homepage() {
     justifyContent: 'space-between',
     width: '100%',
   }}
->
-  {['Home', 'About', 'Testimonials','Tips','Products', 'Register', 'Login'].map((text, index) => (
-    <Button
-      key={index}
-      component="a" // Change Link to anchor 'a'
-      href={`#${text.toLowerCase()}`} // Target section id
-      sx={{ color: 'black' }}
-    >
-      {text}
-    </Button>
-  ))}
+><Button component={Link} to="#home" sx={{ color: 'black', width: '100%' }}>
+    Home
+  </Button>
+  <Button component={Link} to="#about" sx={{ color: 'black', width: '100%' }}>
+    About
+  </Button>
+  <Button component={Link} to="#testimonials" sx={{ color: 'black', width: '100%' }}>
+    Testimonials
+  </Button>
+  <Button component={Link} to="#tips" sx={{ color: 'black', width: '100%' }}>
+    Tips
+  </Button>
+  <Button component={Link} to="#products" sx={{ color: 'black', width: '100%' }}>
+    Products
+  </Button>
+  <Button component="a" href="/register" sx={{ color: 'black', width: '100%' }}>
+  Register
+</Button>
+<Button component="a" href="/login" sx={{ color: 'black', width: '100%' }}>
+  Login
+</Button>
+ 
+
 </Box>
 
         </Toolbar>
