@@ -59,76 +59,58 @@ export default function Homepage() {
 
   return (
     <div>
-     <Box sx={{ backgroundColor: '#f8f8f8', width: '100%' }}>
-      {/* Mobile Menu Button */}
-      <IconButton
-        edge="start"
-        color="black"
-        aria-label="menu"
-        onClick={handleDrawerToggle}
-        sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', top: 16, left: 16 }}
-      >
-        <MenuIcon />
-      </IconButton>
+      {/* Navbar */}
+      <AppBar position="relative" sx={{ backgroundColor: '#f8f8f8' }}>
+        <Toolbar>
+          {/* Mobile Menu Button */}
+          <IconButton
+            edge="start"
+            color="black"
+            aria-label="menu"
+            onClick={handleDrawerToggle}
+            sx={{ display: { xs: 'block', md: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
 
-      {/* Desktop Navigation */}
-      <Box
-        sx={{
-          display: { xs: 'none', md: 'flex' },
-          justifyContent: 'space-between',
-          padding: '10px 20px',
-        }}
-      >
-        <Button component={Link} to="#home" sx={{ color: 'black' }}>
-          Home
-        </Button>
-        <Button component={Link} to="#about" sx={{ color: 'black' }}>
-          About
-        </Button>
-        <Button component={Link} to="#testimonials" sx={{ color: 'black' }}>
-          Testimonials
-        </Button>
-        <Button component={Link} to="#tips" sx={{ color: 'black' }}>
-          Tips
-        </Button>
-        <Button component={Link} to="#products" sx={{ color: 'black' }}>
-          Products
-        </Button>
-        <Button component="a" href="/register" sx={{ color: 'black' }}>
-          Register
-        </Button>
-        <Button component="a" href="/login" sx={{ color: 'black' }}>
-          Login
-        </Button>
-      </Box>
+          {/* Desktop Navigation */}
+          <Box
+  sx={{
+    display: { xs: 'none', md: 'flex' },
+    justifyContent: 'space-between',
+    width: '100%',
+  }}
+>
+  {['Home', 'About', 'Testimonials','Tips','Products', 'Register', 'Login'].map((text, index) => (
+    <Button
+      key={index}
+      component="a" // Change Link to anchor 'a'
+      href={`${text.toLowerCase()}`} // Target section id
+      sx={{ color: 'black' }}
+    >
+      {text}
+    </Button>
+  ))}
+</Box>
+
+        </Toolbar>
+      </AppBar>
 
       {/* Mobile Drawer */}
-      <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={handleDrawerToggle}
+      >
         <Box sx={{ width: 250 }} role="presentation">
-          <Button component={Link} href="#home" sx={{ color: 'black', width: '100%' }}>
-            Home
-          </Button>
-          <Button component={Link} href="#about" sx={{ color: 'black', width: '100%' }}>
-            About
-          </Button>
-          <Button component={Link} href="#testimonials" sx={{ color: 'black', width: '100%' }}>
-            Testimonials
-          </Button>
-          <Button component={Link} href="#tips" sx={{ color: 'black', width: '100%' }}>
-            Tips
-          </Button>
-          <Button component={Link} href="#products" sx={{ color: 'black', width: '100%' }}>
-            Products
-          </Button>
-          <Button  as={Link} to="/register" sx={{ color: 'black', width: '100%' }}>
-            Register
-          </Button>
-          <Button as={Link} to="/login" sx={{ color: 'black', width: '100%' }}>
-            Login
-          </Button>
+          {['Home', 'About', 'Testimonials','Tips','Products', 'Register', 'Login'].map((text, index) => (
+            <Button key={index} component={Link} to={`${text.toLowerCase()}`} sx={{ color: 'black', width: '100%' }}>
+              {text}
+            </Button>
+          ))}
         </Box>
       </Drawer>
-    </Box>
+
       {/* Hero Section with Responsive Background Image */}
       <Box
         sx={{
