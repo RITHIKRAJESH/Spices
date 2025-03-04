@@ -105,25 +105,25 @@ export default function Homepage() {
       {/* Mobile Drawer */}
       <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
         <Box sx={{ width: 250 }} role="presentation">
-          <Button component={Link} to="#home" sx={{ color: 'black', width: '100%' }}>
+          <Button component={Link} href="#home" sx={{ color: 'black', width: '100%' }}>
             Home
           </Button>
-          <Button component={Link} to="#about" sx={{ color: 'black', width: '100%' }}>
+          <Button component={Link} href="#about" sx={{ color: 'black', width: '100%' }}>
             About
           </Button>
-          <Button component={Link} to="#testimonials" sx={{ color: 'black', width: '100%' }}>
+          <Button component={Link} href="#testimonials" sx={{ color: 'black', width: '100%' }}>
             Testimonials
           </Button>
-          <Button component={Link} to="#tips" sx={{ color: 'black', width: '100%' }}>
+          <Button component={Link} href="#tips" sx={{ color: 'black', width: '100%' }}>
             Tips
           </Button>
-          <Button component={Link} to="#products" sx={{ color: 'black', width: '100%' }}>
+          <Button component={Link} href="#products" sx={{ color: 'black', width: '100%' }}>
             Products
           </Button>
-          <Button component="a" href="/register" sx={{ color: 'black', width: '100%' }}>
+          <Button  as={Link} to="/register" sx={{ color: 'black', width: '100%' }}>
             Register
           </Button>
-          <Button component="a" href="/login" sx={{ color: 'black', width: '100%' }}>
+          <Button as={Link} to="/login" sx={{ color: 'black', width: '100%' }}>
             Login
           </Button>
         </Box>
