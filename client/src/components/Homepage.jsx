@@ -18,18 +18,16 @@ export default function Homepage() {
     setDrawerOpen(!drawerOpen);
   };
 
-  // Fetch tips data from the backend
-  const fetchTips = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/admin/viewtips`);
-      setTips(response.data);
-      console.log(response.data); // For debugging purposes
-    } catch (err) {
-      console.error('Error fetching tips:', err);
-    }
-  };
+  
 
   useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}/admin/viewtips`)
+    .then((res)=>{
+      setTips(res.data);
+      console.log(res.data); 
+    }) .catch((err) => {
+      console.log(err);
+    });
     axios
       .get(`${import.meta.env.VITE_BASE_URL}/wholesale/viewproduct`)
       .then((res) => {
@@ -39,7 +37,7 @@ export default function Homepage() {
       .catch((err) => {
         console.log(err);
       });
-    fetchTips(); // Fetch tips when the component mounts
+   
   }, []);
 
   const handleClickOpen = (tip) => {
@@ -295,7 +293,7 @@ export default function Homepage() {
         <Box
           sx={{
             display: 'flex',
-            animation: 'scroll 15s linear infinite', // Animation for scrolling effect
+            animation: 'scroll 15s linear infinite',
             overflow: 'hidden',
             gap: 2,
             p: 2,
