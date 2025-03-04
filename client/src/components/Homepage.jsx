@@ -85,7 +85,7 @@ export default function Homepage() {
     <Button
       key={index}
       component="a" // Change Link to anchor 'a'
-      href={`${text.toLowerCase()}`} // Target section id
+      href={`/${text.toLowerCase()}`} // Target section id
       sx={{ color: 'black' }}
     >
       {text}
@@ -103,8 +103,8 @@ export default function Homepage() {
         onClose={handleDrawerToggle}
       >
         <Box sx={{ width: 250 }} role="presentation">
-          {['Home', 'About', 'Testimonials','Tips','Products', 'Register', 'Login'].map((text, index) => (
-            <Button key={index} component={Link} to={`${text.toLowerCase()}`} sx={{ color: 'black', width: '100%' }}>
+          {['Home', 'About', 'Testimonials', 'Products', 'Register', 'Login'].map((text, index) => (
+            <Button key={index} component={Link} to={`/${text.toLowerCase()}`} sx={{ color: 'black', width: '100%' }}>
               {text}
             </Button>
           ))}
