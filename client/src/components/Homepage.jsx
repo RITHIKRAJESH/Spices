@@ -102,13 +102,30 @@ export default function Homepage() {
         open={drawerOpen}
         onClose={handleDrawerToggle}
       >
-        <Box sx={{ width: 250 }} role="presentation">
-          {['Home', 'About', 'Testimonials','Tips','Products', 'Register', 'Login'].map((text, index) => (
-            <Button key={index} component={Link} to={`#${text.toLowerCase()}`} sx={{ color: 'black', width: '100%' }}>
-              {text}
-            </Button>
-          ))}
-        </Box>
+       <Box sx={{ width: 250 }} role="presentation">
+  <Button component={Link} to="#home" sx={{ color: 'black', width: '100%' }}>
+    Home
+  </Button>
+  <Button component={Link} to="#about" sx={{ color: 'black', width: '100%' }}>
+    About
+  </Button>
+  <Button component={Link} to="#testimonials" sx={{ color: 'black', width: '100%' }}>
+    Testimonials
+  </Button>
+  <Button component={Link} to="#tips" sx={{ color: 'black', width: '100%' }}>
+    Tips
+  </Button>
+  <Button component={Link} to="#products" sx={{ color: 'black', width: '100%' }}>
+    Products
+  </Button>
+  <Button component={Link} to="/register" sx={{ color: 'black', width: '100%' }}>
+    Register
+  </Button>
+  <Button component={Link} to="/login" sx={{ color: 'black', width: '100%' }}>
+    Login
+  </Button>
+</Box>
+
       </Drawer>
 
       {/* Hero Section with Responsive Background Image */}
