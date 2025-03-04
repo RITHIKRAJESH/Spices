@@ -118,12 +118,12 @@ export default function Homepage() {
   <Button component={Link} to="#products" sx={{ color: 'black', width: '100%' }}>
     Products
   </Button>
-  <Button component={Link} to="/register" sx={{ color: 'black', width: '100%' }}>
-    Register
-  </Button>
-  <Button component={Link} to="/login" sx={{ color: 'black', width: '100%' }}>
-    Login
-  </Button>
+  <Button component="a" href="/register" sx={{ color: 'black', width: '100%' }}>
+  Register
+</Button>
+<Button component="a" href="/login" sx={{ color: 'black', width: '100%' }}>
+  Login
+</Button>
 </Box>
 
       </Drawer>
