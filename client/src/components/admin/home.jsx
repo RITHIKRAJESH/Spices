@@ -84,10 +84,10 @@ export default function AdminDashboard() {
         <ListItemText primary="Tips" />
       </ListItemButton>
 
-      <ListItemButton onClick={() => navigate("/admin/message")}>
+      {/* <ListItemButton onClick={() => navigate("/admin/message")}>
         <MessageOutlined sx={{ mr: 2 }} />
         <ListItemText primary="Messages" />
-      </ListItemButton>
+      </ListItemButton> */}
       <ListItemButton onClick={() => navigate("/admin/profile")}>
         <Person sx={{ mr: 2 }} />
         <ListItemText primary="Profile" />
@@ -190,13 +190,13 @@ export default function AdminDashboard() {
             </Grid>
 
             {/* Message Count */}
-            <Grid item xs={12} sm={6} md={4}>
+            {/* <Grid item xs={12} sm={6} md={4}>
               <Paper elevation={3} sx={{ p: 3, textAlign: "center", bgcolor: theme.palette.warning.main }}>
                 <MessageOutlined sx={{ fontSize: 40, color: theme.palette.warning.contrastText }} />
                 <Typography variant="h6">Messages</Typography>
                 <Typography variant="h4">{count.messages}</Typography>
               </Paper>
-            </Grid>
+            </Grid> */}
           </Grid>
 
           {/* Routes for Dynamic Content */}
