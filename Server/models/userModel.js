@@ -9,7 +9,8 @@ const userSchema=new mongoose.Schema({
     shopOrFarmName:{type:String},
     mobile:{type:String},
     accountno:{type:String},
-    ifsc:{type:String}, 
+    ifsc:{type:String},
+    detail:{type:String}
 },{timestamps:true})
 
 

@@ -42,13 +42,43 @@ const viewProduct=async(req,res)=>{
     }
 }
 
-const updateProduct=async(req,res)=>{
-    try{
-        const {productId,quantity}=req.body
-        await productModel
-        .findByIdAndUpdate(productId, { quantity }, { new: true })
-        res.json({message:"Quantity updated successfully!"})
-    }catch(err){    
-        console.log(err)
-    }}
-module.exports={addproduct,viewProducts,updateProduct,viewProduct}
+const updateProduct = async (req, res) => {
+    try {
+      const productId = req.params.id;
+      const { productName, quantity, rate } = req.body;
+  
+      // If an image file is uploaded
+      if (req.files && req.files.productImage) {
+        const productImage = req.files.productImage[0].path; // Store file path of uploaded image
+  
+        // Update product with new data (including image path)
+        const updatedProduct = await productModel.findByIdAndUpdate(
+          productId,
+          { productName, quantity, rate, productImage },
+          { new: true }
+        );
+  
+        return res.json({ message: "Product updated successfully!", product: updatedProduct });
+      } else {
+        // If no new image, just update other fields
+        const updatedProduct = await productModel.findByIdAndUpdate(
+          productId,
+          { productName, quantity, rate },
+          { new: true }
+        );
+  
+        return res.json({ message: "Product updated successfully!", product: updatedProduct });
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Error updating product." });
+    }
+  };
+  
+  const deleteProduct=async(req,res)=>{
+    const id=req.params.id
+    await productModel.deleteOne({_id:id})
+    res.json({message:"Product deleted successfully"})
+  }
+
+module.exports={addproduct,viewProducts,updateProduct,viewProduct,deleteProduct}

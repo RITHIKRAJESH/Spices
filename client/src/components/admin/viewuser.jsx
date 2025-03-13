@@ -57,6 +57,7 @@ export default function AdminViewUsers() {
                   <TableCell><strong>Name</strong></TableCell>
                   <TableCell><strong>Email</strong></TableCell>
                   <TableCell><strong>Role</strong></TableCell>
+                  <TableCell><strong>Document</strong></TableCell>
                   <TableCell><strong>Farm/Shop Name</strong></TableCell>
                   <TableCell><strong>Action</strong></TableCell>
                 </TableRow>
@@ -68,6 +69,10 @@ export default function AdminViewUsers() {
                     <TableCell>{user.username}</TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.role}</TableCell>
+                    <TableCell>
+  <img src={user.detail} alt="User detail" />
+</TableCell>
+
                     <TableCell>{user.shopOrFarmName}</TableCell>
                     <TableCell><Button onClick={()=>handleDelete(user._id)}>Delete</Button></TableCell>
                   </TableRow>

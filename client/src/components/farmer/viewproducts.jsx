@@ -125,6 +125,9 @@ export default function ViewProducts() {
                     <Typography variant="body2" color="textSecondary">
                       Date: {product.date}
                     </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Requires Quantity: {product.quantity}
+                    </Typography>
 
                     {/* Trigger the dialog to add product */}
                     <Button

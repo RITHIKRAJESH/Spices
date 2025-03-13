@@ -107,7 +107,7 @@ export default function Profile() {
                 <strong>Role:</strong> {user.role}
               </Typography>
               {/* Editable Fields */}
-              <TextField
+              {/* <TextField
                 label="Mobile"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
@@ -135,7 +135,7 @@ export default function Profile() {
               )}
               <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={handleUpdate}>
                 Update Details
-              </Button>
+              </Button> */}
             </CardContent>
           </>
         )}

@@ -4,6 +4,7 @@ const productSchema = new mongoose.Schema({
     userid: { type: mongoose.Schema.Types.ObjectId, ref: "user_tbl", required: true }, 
     productName: { type: String, required: true },
     productImage: { type: String },
+    quantity:{type:String},
     productCategory: [
         {
             quality: { type: String, required: true }, 

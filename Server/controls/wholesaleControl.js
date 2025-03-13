@@ -3,7 +3,7 @@ const productModel = require('../models/wholesalerModel');
 
 const addproduct = async (req, res) => {
     try {
-        const { userid, productName, productCategory, date } = req.body;
+        const { userid, productName, productCategory, date,quantity } = req.body;
 
         let parsedCategories;
         try {
@@ -17,14 +17,15 @@ const addproduct = async (req, res) => {
             price: Number(cat.price),
         }));
 
-        const productImage = req.file ? req.file.path : null; // Cloudinary URL
+        const productImage = req.file ? req.file.path : null; 
 
         const newProduct = new productModel({
             userid,
             productName,
             productCategory: parsedCategories,
             date,
-            productImage
+            productImage,
+            quantity
         });
 
         await newProduct.save();
@@ -137,18 +138,28 @@ const deleteProduct=async(req,res)=>{
 
 const updateProduct = async (req, res) => {
     try {
-      const { productId, date, productCategory } = req.body;
+      const { productId, date, productCategory, quantity } = req.body;
+      console.log(productId);
+      console.log(date);
+      console.log(quantity);
+      console.log(productCategory);
   
-      if (!productId || !date || !productCategory) {
+      if (!productId || !date || !productCategory || !quantity) {
         return res.status(400).json({ message: "All fields are required!" });
       }
   
+      // Correct the update data structure:
       const updatedProduct = await productModel.findByIdAndUpdate(
         productId,
-        { date, productCategory },
-        { new: true }
+        {
+          date,           // The updated date
+          productCategory, // The updated categories
+          quantity,        // The updated quantity
+        },
+        { new: true } // Option to return the updated document
       );
   
+      // Check if the product was found and updated
       if (!updatedProduct) {
         return res.status(404).json({ message: "Product not found!" });
       }
@@ -159,4 +170,5 @@ const updateProduct = async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   };
+  
 module.exports = { addproduct,viewProducts,viewProductsById,purchaseProduct,viewplacedOrders,updateStatus,updateProduct,deleteProduct,updatePayment}; 

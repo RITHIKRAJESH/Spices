@@ -88,30 +88,37 @@ export default function RetailerViewproducts() {
     });
     setOpenEditForm(true);
   };
-
   const handleUpdate = (e) => {
     e.preventDefault();
+  
     const formData = new FormData();
     formData.append("productName", product.productName);
     formData.append("productImage", product.productImage); // Ensure file is included
     formData.append("quantity", product.quantity);
     formData.append("rate", product.rate);
     formData.append("userid", token.payload._id);
-
+  
+    // Update product by sending the formData with the selected product id
     axios
       .put(`${import.meta.env.VITE_BASE_URL}/retailer/updateproduct/${selectedProduct._id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then((res) => {
         alert(res.data.message);
-        setOpenEditForm(false);
-        setProduct({ productName: "", productImage: null, quantity: "", rate: "" });
-        setSelectedProduct(null);
+        setOpenEditForm(false); // Close edit form
+        setProduct({ productName: "", productImage: null, quantity: "", rate: "" }); // Clear form
+        setSelectedProduct(null); 
+        window.location.reload()
+        // Reset selected product
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Error updating product:", err);
+        alert("Error updating product.");
       });
   };
+  
 
   const handleDelete = (productId) => {
     axios
@@ -244,12 +251,12 @@ export default function RetailerViewproducts() {
             onChange={handleChange}
             sx={{ mb: 2 }}
           />
-          <input
+          {/* <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
             style={{ marginBottom: "16px" }}
-          />
+          /> */}
           <TextField
             fullWidth
             label="Quantity"

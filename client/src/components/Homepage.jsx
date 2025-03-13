@@ -75,24 +75,18 @@ export default function Homepage() {
 
           {/* Desktop Navigation */}
           <Box
-  sx={{
-    display: { xs: 'none', md: 'flex' },
-    justifyContent: 'space-between',
-    width: '100%',
-  }}
->
-  {['Home', 'About', 'Testimonials','Tips','Products', 'Register', 'Login'].map((text, index) => (
-    <Button
-      key={index}
-      component="a" // Change Link to anchor 'a'
-      href={`/${text.toLowerCase()}`} // Target section id
-      sx={{ color: 'black' }}
-    >
-      {text}
-    </Button>
-  ))}
-</Box>
-
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            {['Home', 'About', 'Testimonials', 'Products', 'Register', 'Login'].map((text, index) => (
+              <Button key={index} component={Link} to={`/${text.toLowerCase()}`} sx={{ color: 'black' }}>
+                {text}
+              </Button>
+            ))}
+          </Box>
         </Toolbar>
       </AppBar>
 
@@ -120,7 +114,6 @@ export default function Homepage() {
           width: '100%',
           overflow: 'hidden',
         }}
-        id="home"
       >
         <img
           src="https://media.istockphoto.com/id/168738383/photo/spices.jpg?s=612x612&w=0&k=20&c=EHn1AqYjfKtdMBcrWVuEEs9uDErJrMBJTplVE7P3_Fw="
@@ -155,7 +148,7 @@ export default function Homepage() {
       </Box>
 
       {/* Tips Header */}
-      <Box sx={{ mt: 5, textAlign: 'center' }} id="tips">
+      <Box sx={{ mt: 5, textAlign: 'center' }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'black' }}>
           Tips for Growing Your Business
         </Typography>
@@ -252,7 +245,6 @@ export default function Homepage() {
               borderRadius: 2,
             },
           }}
-          id="about"
         >
           <Typography
             variant="h4"
@@ -293,7 +285,7 @@ export default function Homepage() {
       </Box>
 
       {/* Marquee Section for Products */}
-      <Box sx={{ mt: 5, overflow: 'hidden', position: 'relative' }} id="products">
+      <Box sx={{ mt: 5, overflow: 'hidden', position: 'relative' }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'black', textAlign: 'center' }}>
           Our Spices 
         </Typography>

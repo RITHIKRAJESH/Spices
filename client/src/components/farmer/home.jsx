@@ -30,6 +30,8 @@ import ViewTips from "./tips";
 import ViewOrderedProducts from "./myproduct";
 import Orderhistory from "./orderhistory";
 import Fertilizers from "./fertilizers";
+import Cart from "./viewcart";
+import FertilizerOrders from "./fertilizerorder";
 
 const drawerWidth = 240;
 
@@ -54,6 +56,8 @@ export default function FarmerDashboard() {
     { text: "Order History", path: "/farmer/order-history", icon: <HistoryIcon /> },
     { text: "Fertilisers", path: "/farmer/fertilizers", icon:<ShoppingCartIcon/> },
     { text: "Tips", path: "/farmer/viewtips", icon: <TipsAndUpdatesIcon /> },
+    { text: "Mycart", path: "/farmer/viewcart", icon: <ShoppingCartIcon/> },
+    {text:"Fertilizer Order", path:"/farmer/view-orders",icon:<ShoppingCartIcon/>},
     { text: "Profile", path: "/farmer/profile", icon: <AccountCircleIcon /> },
     { text: "Logout", path: "/", icon: <ExitToAppIcon />, onClick: handleLogout },
   ];
@@ -118,6 +122,8 @@ export default function FarmerDashboard() {
         <Route path="/my-products" element={<ViewOrderedProducts />} />
         <Route path="/order-history" element={<Orderhistory />} />
         <Route path="/fertilizers" element={<Fertilizers/>}/>
+        <Route path="/viewcart" element={<Cart/>}/>
+        <Route path="/view-orders" element={<FertilizerOrders/>}/>
         </Routes>
       </Box>
     </Box>

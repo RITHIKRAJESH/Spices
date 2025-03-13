@@ -6,6 +6,7 @@ import {Routes} from "react-router-dom";
 import { HistoryEdu, Logout, Payment, Person, ShoppingCart, Store } from "@mui/icons-material";
 import RetailerViewproducts from "./viewproducts";
 import RetailerProfile from "./profile";
+import ViewRetailOrders from "./vieworders";
 // const menuItems = [
   
 //   { text: "View Products", path: "/retailer/viewproducts" },
@@ -71,12 +72,12 @@ export default function Retailerhome() {
         <ListItemButton onClick={() => navigate("/retailer/vieworders")}> 
           <ShoppingCart sx={{ mr: 2 }} /> <ListItemText primary="Orders" />
         </ListItemButton>
-        <ListItemButton onClick={() => navigate("/retailer/order-history")}> 
+        {/* <ListItemButton onClick={() => navigate("/retailer/order-history")}> 
           <HistoryEdu sx={{ mr: 2 }} /> <ListItemText primary="Order History" />
         </ListItemButton>
         <ListItemButton onClick={() => navigate("/retailer/payments")}> 
           <Payment sx={{ mr: 2 }} /> <ListItemText primary="Payment" />
-        </ListItemButton>
+        </ListItemButton> */}
         <ListItemButton onClick={() => navigate("/retailer/profile")}> 
           <Person sx={{ mr: 2 }} /> <ListItemText primary="Profile" />
         </ListItemButton>
@@ -94,6 +95,7 @@ export default function Retailerhome() {
         <Routes>
           <Route path="/viewproducts" element={<RetailerViewproducts />} />
           <Route path="/profile" element={<RetailerProfile/>} />
+          <Route path="/vieworders" element={<ViewRetailOrders/>}/>
           </Routes>
         <Outlet />
       </Box>

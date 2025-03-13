@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Retailerdashboard from "./components/retailer/retailerdashboard";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 // Lazy load components
 const Homepage = React.lazy(() => import("./components/Homepage"));
 const LoginForm = React.lazy(() => import("./components/login"));

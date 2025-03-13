@@ -10,6 +10,7 @@ import {
   Badge
 } from "@mui/material";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 // import { jwtDecode } from "jwt-decode";
 
 export default function Fertilizers() {
@@ -20,7 +21,8 @@ export default function Fertilizers() {
   
   // State to store the cart items
   const [cart, setCart] = useState([]);
-
+  const token = jwtDecode(localStorage.getItem("token"));
+    const userId = token.payload._id;
   // Fetch products on component mount
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BASE_URL}/retailer/viewproduct`)
@@ -35,8 +37,23 @@ export default function Fertilizers() {
   
   // Handle Add to Cart action
   const handleAddToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
-    alert(`${product.productName} added to cart!`);
+    const cartItem = {
+      productId: product._id,
+      productName: product.productName,
+      quantity: 5, // You can change this based on the quantity selection in the UI
+      rate: product.rate,
+      userId: userId, // Use the decoded userId from the token
+    };
+  console.log(cartItem)
+    // Call an API endpoint to add the product to the user's cart
+    axios
+      .post(`${import.meta.env.VITE_BASE_URL}/user/addCart`, cartItem)
+      .then((res) => {
+        alert(res.data.message || "Product added to cart successfully.");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -108,7 +125,7 @@ export default function Fertilizers() {
 
       {/* Show Cart Badge */}
       <Badge badgeContent={cart.length} color="secondary">
-        <Button variant="outlined" color="primary" sx={{ mt: 3 }}>
+        <Button variant="outlined" color="primary" sx={{ mt: 3 }} href="/farmer/viewcart">
           View Cart
         </Button>
       </Badge>
