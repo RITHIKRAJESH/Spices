@@ -38,3 +38,5 @@ WholesaleRouter.delete("/deleteproduct",deleteProduct)
 WholesaleRouter.put("/updateproduct", updateProduct)
 WholesaleRouter.post("/updatepayment",updatePayment)
 module.exports = WholesaleRouter;
+
+

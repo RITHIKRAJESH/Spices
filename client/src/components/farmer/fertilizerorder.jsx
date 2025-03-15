@@ -47,6 +47,7 @@ export default function FertilizerOrders() {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Order ID</TableCell>
+                                <TableCell>Toatal Amount</TableCell>
                                 <TableCell>Status</TableCell>
                                 <TableCell>Delivery Address</TableCell>
                                 <TableCell>Payment Method</TableCell>
@@ -56,6 +57,7 @@ export default function FertilizerOrders() {
                             {orders.map((order) => (
                                 <TableRow key={order._id}>
                                     <TableCell>{order._id}</TableCell>
+                                    <TableCell>{order.totalAmount}</TableCell>
                                     <TableCell>{order.status}</TableCell>
                                     <TableCell>{order.deliveryAddress}</TableCell>
                                     <TableCell>{order.paymentMethod}</TableCell>

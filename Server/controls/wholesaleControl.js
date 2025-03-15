@@ -102,8 +102,15 @@ const viewplacedOrders=async(req,res)=>{
 const updateStatus=async(req,res)=>{
     try{
         const {message,id}=req.body
-        const product=await sellModel.findOne({_id:id})
+        const product=await sellModel.findOne({_id:id}).populate("productId")
         product.status=message
+        console.log("Ordered product id",product.productId._id)
+        if(message=="collected"){
+           const products=await productModel.findOne({_id:product.productId._id})
+           console.log(products)
+           products.quantity-=product. quantity
+           products.save()
+        }
         product.save()
         res.json(`Order ${message} successfully`)
     }catch(err){
