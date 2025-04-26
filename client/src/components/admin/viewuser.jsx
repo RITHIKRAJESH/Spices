@@ -22,7 +22,7 @@ export default function AdminViewUsers() {
         console.error("Error fetching users:", error);
         setLoading(false);
       });
-  }, []);
+  });
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
